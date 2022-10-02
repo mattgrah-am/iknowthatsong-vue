@@ -2,18 +2,13 @@
   <div v-if="store.tracklist.length">
     <div
       v-if="store.tracklist.length >= 5"
-      v-for="track in store.tracklist"
-      class="bg my-2 flex cursor-pointer flex-col rounded-lg border border-neutral-400 bg-neutral-100/70 text-sm hover:bg-neutral-400/50"
+      v-for="(track, index) in store.tracklist"
     >
-      <div class="flex items-center gap-4">
-        <img
-          :src="track.cover"
-          :alt="track.title"
-          class="w-12 rounded-tl-lg border-r border-neutral-400"
-        />
-        <span class="font-bold">{{ track.title }}</span>
-      </div>
-      <AudioPlayer :src="track.preview" />
+      <AudioPlayer
+        :preview="track.preview"
+        :cover="track.cover"
+        :index="index"
+      />
     </div>
   </div>
 </template>

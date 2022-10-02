@@ -6,7 +6,7 @@
   <div>
     <img :src="props.cover" alt="Album Art" class="w-full rounded-lg" />
   </div>
-  <div class="flex justify-between px-2 py-4">
+  <div class="flex items-center justify-between px-2 py-4">
     <button @click="toggleAudio">
       <PlayIcon v-if="playStatus" />
       <PauseIcon v-if="!playStatus" />

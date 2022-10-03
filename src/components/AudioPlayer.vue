@@ -40,9 +40,9 @@ const volumeStatus = ref(true);
 const volume = ref(80);
 
 const props = defineProps<{
-  preview: string;
-  cover: string;
-  index: number;
+  preview: string | undefined;
+  cover: string | undefined;
+  index: number | undefined;
 }>();
 
 const toggleAudio = () => {

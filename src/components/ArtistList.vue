@@ -18,8 +18,12 @@
         class="absolute top-3 -z-10 origin-[0] -translate-y-8 scale-75 transform px-4 text-sm text-neutral-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-8 peer-focus:-translate-x-2 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-neutral-900"
         >Search Artist / Band
       </label>
-      <div v-for="artist in store.artistList">
+      <div v-if="loading">
+        <LoadingIcon />
+      </div>
+      <div v-if="!loading" v-for="artist in store.artistList">
         <div
+          v-if="artist.name !== undefined"
           class="bg my-2 flex cursor-pointer items-center gap-4 rounded-lg border border-neutral-400 bg-neutral-100/70 hover:bg-neutral-400/50"
           @click="store.getTrackList(artist.tracklist, artist.name)"
           :key="artist.name"
@@ -39,13 +43,19 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useDeezerStore } from "../stores/deezerStore";
+import LoadingIcon from "./icons/LoadingIcon.vue";
 
 const store = useDeezerStore();
 const artistInput = ref("");
+const loading = ref(false);
 
 const handleChange = () => {
   if (artistInput.value.length >= 2 && artistInput.value.length <= 10) {
+    loading.value = true;
     store.getArtistList(artistInput.value);
+    setTimeout(() => {
+      loading.value = false;
+    }, 1000);
   }
   if (artistInput.value.length < 2) {
     store.artistList = [];

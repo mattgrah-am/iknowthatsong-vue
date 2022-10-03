@@ -1,8 +1,8 @@
 <template>
   <div>
     <p class="pb-4 text-sm">
-      Unfortunately <strong>{{ artist }} </strong> does not have enough playable
-      tracks to play this game. Try again.
+      Unfortunately <strong>{{ artist }} </strong> does not have enough preview
+      tracks to play this game, try again.
     </p>
     <ArtistList />
   </div>
@@ -14,10 +14,10 @@ import { useDeezerStore } from "../stores/deezerStore";
 import ArtistList from "./ArtistList.vue";
 
 const store = useDeezerStore();
-const artist = ref<string | null>("");
+const artist = ref<string | undefined>("");
 
 onMounted(() => {
-  artist.value = store.tracklist[0].artist;
+  artist.value = store.tracklist.artist;
   store.artistList = [];
 });
 </script>

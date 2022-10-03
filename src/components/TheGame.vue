@@ -2,8 +2,12 @@
   <div class="w-full bg-neutral-100/90 p-8 shadow sm:w-96 sm:rounded-xl">
     <TheHeader />
     <UnplayableGame v-if="store.unplayableGame" />
-    <ArtistList v-if="store.tracklist.length < 5 && !store.unplayableGame" />
-    <TrackList v-if="store.tracklist.length" />
+    <ArtistList
+      v-if="store.tracklist.tracks.length < 10 && !store.unplayableGame"
+    />
+    <TrackList
+      v-if="store.tracklist.tracks.length > 1 && !store.unplayableGame"
+    />
     <TheFooter />
   </div>
 </template>

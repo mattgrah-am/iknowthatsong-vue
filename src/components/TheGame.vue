@@ -1,12 +1,12 @@
 <template>
   <div class="w-full bg-neutral-100/90 p-8 shadow sm:w-96 sm:rounded-xl">
     <TheHeader />
-    <UnplayableGame v-if="store.unplayableGame" />
+    <UnplayableGame v-if="store.playableGame === false" />
     <ArtistList
-      v-if="store.tracklist.tracks.length < 10 && !store.unplayableGame"
+      v-if="store.playableGame === true && store.tracklist.tracks.length < 10"
     />
     <TrackList
-      v-if="store.tracklist.tracks.length > 1 && !store.unplayableGame"
+      v-if="store.playableGame === true && store.tracklist.tracks.length > 1"
     />
     <TheFooter />
   </div>

@@ -4,7 +4,16 @@
     Your browser does not support the audio element.
   </audio>
   <div>
-    <img :src="props.cover" alt="Album Art" class="w-full rounded-lg" />
+    <h2
+      class="mb-2 rounded-lg bg-neutral-900 py-2 text-center text-xl font-bold text-neutral-100"
+    >
+      {{ store.tracklist.artist }}
+    </h2>
+    <img
+      :src="props.cover"
+      alt="Album Art"
+      class="w-full rounded-lg border border-neutral-300"
+    />
   </div>
   <div class="flex items-center justify-between px-2 py-4">
     <button @click="toggleAudio">
@@ -29,12 +38,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { useDeezerStore } from "../stores/deezerStore";
 import PlayIcon from "./icons/PlayIcon.vue";
 import PauseIcon from "./icons/PauseIcon.vue";
 import SpeakerIcon from "./icons/SpeakerIcon.vue";
 import MuteIcon from "./icons/MuteIcon.vue";
 
+const store = useDeezerStore();
 const playStatus = ref(true);
 const volumeStatus = ref(true);
 const volume = ref(80);
@@ -44,6 +55,14 @@ const props = defineProps<{
   cover: string | undefined;
   index: number | undefined;
 }>();
+
+onMounted(() => {
+  toggleAudio();
+});
+
+setTimeout(() => {
+  toggleAudio();
+}, 30000);
 
 const toggleAudio = () => {
   const audio = document.getElementById(

@@ -1,16 +1,14 @@
 <template>
   <div>
-    <div v-for="(track, index) in store.tracklist.tracks">
-      <h2
-        class="mb-2 rounded-lg bg-gradient-to-br from-neutral-900 to-neutral-700 py-2 text-center text-xl font-bold text-neutral-100"
-      >
-        {{ store.tracklist.artist }}
-      </h2>
+    <div>
       <AudioPlayer
-        :preview="track.preview"
-        :cover="track.cover"
-        :index="index"
+        :preview="songs[track].preview"
+        :cover="songs[track].cover"
+        :index="track"
       />
+      <div v-for="song in songs[track].songs">
+        <button @click="nextSong">{{ song }}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -20,4 +18,12 @@ import { useDeezerStore } from "../stores/deezerStore";
 import AudioPlayer from "./AudioPlayer.vue";
 
 const store = useDeezerStore();
+
+let track = 0;
+const songs = store.gameTracks;
+
+const nextSong = () => {
+  track++;
+  console.log(track);
+};
 </script>

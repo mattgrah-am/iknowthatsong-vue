@@ -10,11 +10,13 @@ interface ArtistLists {
 
 interface TrackList {
   artist: string | undefined;
-  tracks: {
-    title: string | undefined;
-    cover: string | undefined;
-    preview: string | undefined;
-  }[];
+  tracks: Tracks[];
+}
+interface Tracks {
+  title: undefined;
+  cover: undefined;
+  preview: undefined;
+  songs: string[];
 }
 
 export const useDeezerStore = defineStore("counter", () => {
@@ -33,14 +35,19 @@ export const useDeezerStore = defineStore("counter", () => {
         title: undefined,
         cover: undefined,
         preview: undefined,
+        songs: [],
       },
     ],
   });
-
-  const unplayableGame = computed(
-    () =>
-      tracklist.value.tracks.length > 1 && tracklist.value.tracks.length < 10
-  );
+  const playableGame = ref(true);
+  const gameTracks = ref<Tracks[] | []>([
+    {
+      title: undefined,
+      cover: undefined,
+      preview: undefined,
+      songs: [],
+    },
+  ]);
 
   const getArtistList = (artist: string) => {
     axios
@@ -61,12 +68,56 @@ export const useDeezerStore = defineStore("counter", () => {
       .get(`${api}/tracklist/?q=${tracks}&n=${artist}`)
       .then((response) => {
         tracklist.value = response.data;
-        console.log(response.data);
+        playableGame.value = response.data.playable;
+        const gameSongs: Tracks[] = [];
+        const songs: string[] = [];
+        let trackCounter = 10;
+        while (trackCounter > 0) {
+          gameSongs.push(
+            ...tracklist.value.tracks.splice(
+              Math.floor(Math.random() * tracklist.value.tracks.length),
+              1
+            )
+          );
+          trackCounter--;
+        }
+        gameSongs.forEach((track: Tracks) => songs.push(track.title!));
+        trackCounter = 10;
+        let songList = [...songs];
+        while (trackCounter > 0) {
+          gameSongs.forEach((track: Tracks) => {
+            track["songs"] = [];
+            if (songList.includes(track.title!)) {
+              track.songs.push(track.title!);
+              songList.splice(track.title!, 1);
+              while (track.songs.length < 4) {
+                track.songs.push(
+                  songList.splice(
+                    Math.floor(Math.random() * songList.length),
+                    1
+                  )[0]
+                );
+              }
+              track.songs.sort(() => (Math.random() > 0.5 ? 1 : -1));
+              songList = [...songs];
+            }
+          });
+          trackCounter--;
+        }
+        gameTracks.value = gameSongs;
+        console.log(gameTracks.value);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
 
-  return { artistList, tracklist, unplayableGame, getArtistList, getTrackList };
+  return {
+    artistList,
+    tracklist,
+    gameTracks,
+    playableGame,
+    getArtistList,
+    getTrackList,
+  };
 });

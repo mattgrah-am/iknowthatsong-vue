@@ -49,6 +49,9 @@ export const useDeezerStore = defineStore("counter", () => {
     },
   ]);
 
+  const trackNumber = ref(0);
+  const score = ref(0);
+
   const getArtistList = (artist: string) => {
     axios
       .get(`${api}/search/?q=${artist}`)
@@ -83,13 +86,13 @@ export const useDeezerStore = defineStore("counter", () => {
         }
         gameSongs.forEach((track: Tracks) => songs.push(track.title!));
         trackCounter = 10;
-        let songList = [...songs];
+        let songList = [...new Set(songs)];
         while (trackCounter > 0) {
           gameSongs.forEach((track: Tracks) => {
             track["songs"] = [];
             if (songList.includes(track.title!)) {
               track.songs.push(track.title!);
-              songList.splice(track.title!, 1);
+              songList.splice(songList.indexOf(track.title!), 1);
               while (track.songs.length < 4) {
                 track.songs.push(
                   songList.splice(
@@ -99,23 +102,22 @@ export const useDeezerStore = defineStore("counter", () => {
                 );
               }
               track.songs.sort(() => (Math.random() > 0.5 ? 1 : -1));
-              songList = [...songs];
+              songList = [...new Set(songs)];
             }
           });
           trackCounter--;
         }
         gameTracks.value = gameSongs;
-        console.log(gameTracks.value);
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      .catch((error) => {});
   };
 
   return {
     artistList,
     tracklist,
     gameTracks,
+    trackNumber,
+    score,
     playableGame,
     getArtistList,
     getTrackList,

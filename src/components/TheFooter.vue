@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center justify-center text-xs">
+    <div class="mt-2 flex items-center justify-center text-xs">
       Created with 🖤 by&nbsp;
       <a
         href="https://www.mattgrah.am"

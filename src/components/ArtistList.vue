@@ -1,9 +1,6 @@
 <template>
   <div>
-    <p class="pb-8 text-sm">
-      Search and select an artist / band below to begin.
-    </p>
-    <div class="group relative z-0 mb-8 w-full">
+    <div class="group relative z-0 mt-6 mb-8 w-full">
       <input
         name="artistInput"
         type="text"
@@ -16,7 +13,7 @@
       <label
         for="artistInput"
         class="absolute top-3 -z-10 origin-[0] -translate-y-8 scale-75 transform px-4 text-sm text-neutral-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-8 peer-focus:-translate-x-2 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-neutral-900"
-        >Search Artist / Band
+        >Search and select an Artist or Band
       </label>
       <div v-if="loading">
         <LoadingIcon />

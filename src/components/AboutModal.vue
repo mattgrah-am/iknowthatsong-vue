@@ -52,6 +52,7 @@
               target="_blank"
               rel="noreferrer"
               underline="hover"
+              class="text-neutral-500 hover:underline hover:underline-offset-2"
             >
               Github
             </a>
@@ -106,7 +107,7 @@ const props = defineProps({
 
 const websiteLinks = [
   {
-    name: "Vue",
+    name: "Vue JS",
     url: "https://vuejs.org/",
   },
   {

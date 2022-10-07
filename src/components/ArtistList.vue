@@ -22,7 +22,7 @@
         <div
           v-if="artist.name !== undefined"
           class="bg my-2 flex cursor-pointer items-center gap-4 rounded-lg border border-neutral-400 bg-neutral-100/70 hover:bg-neutral-400/50"
-          @click="store.getTrackList(artist.tracklist, artist.name)"
+          @click="selectArtistBand(artist.tracklist, artist.name)"
           :key="artist.name"
         >
           <img
@@ -57,5 +57,13 @@ const handleChange = () => {
   if (artistInput.value.length < 2) {
     store.artistList = [];
   }
+};
+
+const selectArtistBand = (
+  tracklist: string | undefined,
+  name: string | undefined
+) => {
+  store.trackNumber = 0;
+  store.getTrackList(tracklist, name);
 };
 </script>

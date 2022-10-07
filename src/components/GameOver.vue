@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p class="pb-4 text-center text-sm">{{ response }}. Play again?</p>
+    <p class="pb-4 text-center text-sm">
+      {{ response }}. Do you want to play again?
+    </p>
     <ArtistList />
   </div>
 </template>
@@ -11,15 +13,12 @@ import { useDeezerStore } from "../stores/deezerStore";
 import ArtistList from "./ArtistList.vue";
 
 const store = useDeezerStore();
+const score = store.score;
 const response = computed(() => {
-  if (store.score === 10)
-    return `Outstanding Effort! You scored ${store.score} out of ${store.gameTracks.length}`;
-  else if (store.score > 5)
-    return `Great work! You scored ${store.score} out of ${store.gameTracks.length}`;
-  else if (store.score > 1)
-    return `Not Bad... You scored ${store.score} out of ${store.gameTracks.length}`;
-  else
-    return `Unlucky... You should try again. You scored ${store.score} out of ${store.gameTracks.length}`;
+  if (score >= 8) return `Outstanding Effort! You scored ${score} out of 10`;
+  else if (score >= 5) return `Great work! You scored ${score} out of 10`;
+  else if (score > 1) return `Not Bad... You scored ${score} out of 10`;
+  else return `Unlucky... You should try again. You scored ${score} out of 10`;
 });
 
 store.artistList = [];
@@ -35,6 +34,5 @@ store.tracklist = {
   ],
 };
 store.gameTracks = [];
-store.trackNumber = 0;
 store.score = 0;
 </script>

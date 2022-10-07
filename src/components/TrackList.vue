@@ -7,12 +7,12 @@
   <div v-for="song in songs[store.trackNumber].songs">
     <button
       @click="nextSong(song)"
-      class="mb-2 w-full rounded border border-neutral-500 bg-neutral-100 px-2 py-1 text-neutral-700 hover:bg-neutral-400/50 hover:text-neutral-700 disabled:bg-transparent disabled:text-neutral-100"
+      class="mb-2 w-full rounded border border-neutral-400 bg-neutral-100 px-2 py-1 text-neutral-700 hover:bg-neutral-400/50 hover:text-neutral-700 disabled:bg-transparent disabled:text-transparent"
       :class="
         clicked === true && song === store.gameTracks[store.trackNumber].title
-          ? '!border-emerald-900 !bg-emerald-500'
+          ? '!border-green-600 !bg-green-200/50 !text-green-600'
           : clicked && song === song
-          ? '!border-rose-900 !bg-rose-500'
+          ? '!border-red-500 !bg-red-200/50 !text-red-600'
           : ''
       "
       :disabled="clicked"

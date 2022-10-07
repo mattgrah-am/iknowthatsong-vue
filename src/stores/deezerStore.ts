@@ -20,7 +20,7 @@ interface Tracks {
 }
 
 export const useDeezerStore = defineStore("counter", () => {
-  const api = `http://www.mattgrah.am/api`;
+  const api = `https://www.mattgrah.am/api`;
   const artistList = ref<ArtistLists[]>([
     {
       name: undefined,

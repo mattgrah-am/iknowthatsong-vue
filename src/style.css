@@ -6,8 +6,7 @@
 
 @layer {
   .app {
-    background: #000 url("src/assets/img/background.webp") no-repeat fixed
-      center;
+    background: #000 url("public/img/background.webp") no-repeat fixed center;
     background-size: cover;
     min-height: 100vh;
     font-family: "Lato", sans-serif;

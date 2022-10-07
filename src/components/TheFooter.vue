@@ -12,7 +12,7 @@
       </a>
       &nbsp;using&nbsp;
       <a href="https://developers.deezer.com/" target="_blank" rel="noreferrer">
-        <img class="w-14" src="src/assets/img/deezer.png" alt="Deezer" />
+        <img class="w-14" src="/src/assets/img/deezer.png" alt="Deezer" />
       </a>
       <sup>&nbsp;API</sup>
     </div>

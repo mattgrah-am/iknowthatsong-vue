@@ -20,8 +20,8 @@ Head to `localhost:5173` for development.
 
 Auto install all dependencies for client and server:
 
-npm install
+`npm install`
 
 Build a production Vue App
 
-npm run build
+`npm run build`

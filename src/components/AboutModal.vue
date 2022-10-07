@@ -11,7 +11,7 @@
             I Know that Song!
           </h3>
           <p class="text-sm">
-            Was created as part of
+            Originally created as part of
             <a
               href="https://generalassemb.ly/education/software-engineering-immersive-remote-flex"
               target="_blank"
@@ -20,7 +20,8 @@
             >
               General Assembly's Software Engineering Immersive Online (Flex)
             </a>
-            course's final project. It uses&nbsp;
+            course's final project using React, Express and Node JS, this
+            project was overhauled and now uses&nbsp;
             <span v-for="link in websiteLinks">
               <a
                 class="text-sm text-neutral-500 hover:underline hover:underline-offset-2"
@@ -47,7 +48,7 @@
             </a>
             You can learn more and review the full source code on
             <a
-              href="https://github.com/mattgrah-am/I-know-that-song"
+              href="https://github.com/mattgrah-am/iknowthatsong-vue"
               target="_blank"
               rel="noreferrer"
               underline="hover"
@@ -117,12 +118,12 @@ const websiteLinks = [
     url: "https://tailwindcss.com/",
   },
   {
-    name: "Express JS",
-    url: "https://expressjs.com/",
+    name: "Pinia",
+    url: "https://pinia.vuejs.org/",
   },
   {
-    name: "Node JS",
-    url: "https://nodejs.org/en/",
+    name: "Cloudflare Workers",
+    url: "https://workers.cloudflare.com/",
   },
 ];
 

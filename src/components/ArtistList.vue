@@ -18,9 +18,9 @@
       <div v-if="loading">
         <LoadingIcon />
       </div>
-      <div v-if="!loading" v-for="artist in store.artistList">
+      <div v-show="isLoaded" v-for="artist in store.artistList">
         <div
-          v-if="artist.name !== undefined"
+          v-show="isLoaded"
           class="bg my-2 flex cursor-pointer items-center gap-4 rounded-lg border border-neutral-400 bg-neutral-100/70 hover:bg-neutral-400/50"
           @click="selectArtistBand(artist.tracklist, artist.name)"
           :key="artist.name"
@@ -28,7 +28,8 @@
           <img
             :src="artist.picture"
             :alt="artist.name"
-            class="w-12 rounded-l-lg border-r border-neutral-400"
+            class="h-12 w-12 rounded-l-lg border-r border-neutral-400"
+            @load="onImgLoaded"
           />
           <span class="font-bold">{{ artist.name }}</span>
         </div>
@@ -45,16 +46,21 @@ import LoadingIcon from "./icons/LoadingIcon.vue";
 const store = useDeezerStore();
 const artistInput = ref("");
 const loading = ref(false);
+const isLoaded = ref(false);
+
+const onImgLoaded = () => {
+  isLoaded.value = true;
+};
 
 const handleChange = () => {
   if (artistInput.value.length >= 2 && artistInput.value.length <= 10) {
     loading.value = true;
     store.getArtistList(artistInput.value);
-    setTimeout(() => {
-      loading.value = false;
-    }, 1000);
   }
+  loading.value = false;
+
   if (artistInput.value.length < 2) {
+    isLoaded.value = false;
     store.artistList = [];
   }
 };

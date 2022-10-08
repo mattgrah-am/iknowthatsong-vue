@@ -3,6 +3,7 @@
     :preview="songs[store.trackNumber].preview"
     :cover="songs[store.trackNumber].cover"
     :index="store.trackNumber"
+    :clicked="clicked"
   />
   <div v-for="song in songs[store.trackNumber].songs">
     <button

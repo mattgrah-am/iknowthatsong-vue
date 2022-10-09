@@ -21,7 +21,7 @@
       <div v-show="isLoaded" v-for="artist in store.artistList">
         <div
           v-show="isLoaded"
-          class="bg my-2 flex cursor-pointer items-center gap-4 rounded-lg border border-neutral-400 bg-neutral-100/70 hover:bg-neutral-400/50"
+          class="my-2 flex cursor-pointer items-center gap-4 rounded-lg border border-neutral-400 bg-neutral-100/70 hover:bg-neutral-400/50 md:hover:bg-transparent"
           @click="selectArtistBand(artist.tracklist, artist.name)"
           :key="artist.name"
         >

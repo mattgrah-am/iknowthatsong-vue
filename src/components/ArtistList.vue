@@ -4,7 +4,7 @@
       <input
         name="artistInput"
         type="text"
-        class="peer block w-full appearance-none rounded-lg border-2 border-neutral-400 bg-transparent py-2.5 px-2 text-sm text-neutral-900 shadow-inner focus:border-neutral-600 focus:outline-none focus:ring-0"
+        class="peer block w-full appearance-none rounded-lg border-2 border-neutral-400 bg-transparent py-2.5 px-2 text-base text-neutral-900 shadow-inner focus:border-neutral-600 focus:outline-none focus:ring-0"
         placeholder=" "
         required
         v-model="artistInput"
